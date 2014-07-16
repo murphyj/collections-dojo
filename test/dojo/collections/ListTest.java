@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class ListTest {
 
@@ -15,7 +16,7 @@ public class ListTest {
     @Before
     public void setup() {
         list = new List();
-        first = new Object();
+        first = "1st";
         list.add(first);
     }
 
@@ -26,17 +27,35 @@ public class ListTest {
     }
 
     @Test
-    public void addTwoElements() throws Exception {
-        Object second = new Object();
-        list.add(second);
-        assertThat(list.length(), is(equalTo(2)));
-        assertThat(list.get(0), is(equalTo(first)));
-        assertThat(list.get(1), is(equalTo(second)));
+    public void firstElementIsBothHeadAndTail() throws Exception {
+        assertThat(list.head(), is(equalTo(list.tail())));
     }
 
     @Test
-    public void insertElementAtX() throws Exception {
-//        Object second = new O
-//        assertThat(list.get(1), is(equalTo(second)));
+    public void addSecondElementToList() throws Exception {
+        Object second = "2nd";
+        list.add(second);
+        assertThat(list.get(1), is(equalTo(second)));
+        assertThat(list.length(), is(equalTo(2)));
+    }
+
+    @Test
+    public void elementAddedIsHead() throws Exception {
+        Object second = "2nd";
+        list.add(second);
+        assertThat(list.head().object, is(equalTo(second)));
+    }
+
+    @Test
+    public void firstElementAddedIsTail() throws Exception {
+        list.add("1st");
+        assertThat(list.tail().object, is(equalTo(first)));
+    }
+
+    @Test
+    public void insertElementAtPosition() throws Exception {
+        Object objectToInsert = "inserted";
+        list.insert(objectToInsert, 1);
+        assertThat(list.get(1), is(equalTo(objectToInsert)));
     }
 }
