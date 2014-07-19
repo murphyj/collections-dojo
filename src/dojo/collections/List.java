@@ -9,6 +9,14 @@ public class List {
         return this.length;
     }
 
+    public Element head() {
+        return head;
+    }
+
+    public Element tail() {
+        return tail;
+    }
+
     public void add(Object o) {
         Element element = new Element(o);
         Element oldHead = null;
@@ -37,14 +45,6 @@ public class List {
             }
         }
         return null;
-    }
-
-    public Element head() {
-        return head;
-    }
-
-    public Element tail() {
-        return tail;
     }
 
     public void insert(Object object, int i) throws IndexOutOfBoundsException {
