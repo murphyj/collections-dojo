@@ -65,11 +65,18 @@ public class ListTest {
         list.insert("should fail", 1);
     }
 
-//    @Test
-//    public void replaceElementAtX() throws Exception {
-//        Object replacementObject = "replacement";
-//        Element replacement = new Element(replacementObject);
-//        list.replace(replacement, 0);
-//        assertThat(list.get(0), is(equalTo(replacementObject)));
-//    }
+    @Test
+    public void replaceElementAtX() throws Exception {
+        list.add("2nd");
+        list.add("3rd");
+
+        Object fourth = "4th";
+        list.add(fourth);
+        Object replacementObject = "replacement";
+
+        list.replace(replacementObject, 2);
+
+        assertThat(list.get(2), is(equalTo(replacementObject)));
+        assertThat(list.get(3), is(equalTo(fourth)));
+    }
 }

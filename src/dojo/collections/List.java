@@ -47,8 +47,8 @@ public class List {
         return null;
     }
 
-    public void insert(Object object, int i) throws IndexOutOfBoundsException {
-        throwExceptionIfBeyondLength(i);
+    public void insert(Object object, int index) throws IndexOutOfBoundsException {
+        throwExceptionIfBeyondLength(index);
 
         Element nextElement = tail.nextElement();
         Element toInsert = new Element(object);
@@ -60,5 +60,18 @@ public class List {
         if (i > length - 1) {
             throw new IndexOutOfBoundsException("Cannot insert at index " + i + ". Array is length " + length);
         }
+    }
+
+    public void replace(Object object, int index) {
+        int i = 0;
+        Element current = tail;
+        do {
+            if (i == index) {
+                current.replaceElement(object);
+                break;
+            }
+            current = current.nextElement();
+            i++;
+        } while (i <= index);
     }
 }

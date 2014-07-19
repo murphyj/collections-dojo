@@ -1,7 +1,7 @@
 package dojo.collections;
 
 public class Element {
-    public final Object object;
+    public Object object;
 
     private Element next;
 
@@ -15,5 +15,9 @@ public class Element {
 
     public Element nextElement() {
         return next;
+    }
+
+    public void replaceElement(Object object) {
+        this.object = object;
     }
 }
