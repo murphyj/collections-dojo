@@ -11,14 +11,20 @@ public class List {
 
     public void add(Object o) {
         Element element = new Element(o);
-        Element oldHead = head;
-        oldHead.addNextElement(element);
+        Element oldHead = null;
+
+        if (length > 0) {
+            oldHead = head;
+            oldHead.addNextElement(element);
+        }
+
         head = element;
         length++;
 
         if (length == 1) {
             tail = head;
         }
+
     }
 
     public Object get(int index) {
@@ -41,10 +47,18 @@ public class List {
         return tail;
     }
 
-    public void insert(Object object, int i) {
+    public void insert(Object object, int i) throws IndexOutOfBoundsException {
+        throwExceptionIfBeyondLength(i);
+
         Element nextElement = tail.nextElement();
         Element toInsert = new Element(object);
         tail.addNextElement(toInsert);
         toInsert.addNextElement(nextElement);
+    }
+
+    private void throwExceptionIfBeyondLength(int i) throws IndexOutOfBoundsException {
+        if (i > length - 1) {
+            throw new IndexOutOfBoundsException("Cannot insert at index " + i + ". Array is length " + length);
+        }
     }
 }

@@ -54,8 +54,14 @@ public class ListTest {
 
     @Test
     public void insertElementAtPosition() throws Exception {
-        Object objectToInsert = "inserted";
+        list.add(new Element("2nd"));
+        Object objectToInsert = "3rd inserted";
         list.insert(objectToInsert, 1);
         assertThat(list.get(1), is(equalTo(objectToInsert)));
+    }
+    
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void insertElementBeyondSizeOfListFailsWithOutOfBoundsException() throws Exception {
+        list.insert(new Element("should fail"), 1);
     }
 }
