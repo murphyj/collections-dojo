@@ -79,4 +79,14 @@ public class ListTest {
         assertThat(list.get(2), is(equalTo(replacementObject)));
         assertThat(list.get(3), is(equalTo(fourth)));
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void replaceElementAtXBeyondLengthFailsWithOutOfBoundsException() throws Exception {
+        list.replace("replacement", 2);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getElementAtXBeyondLengthFailsWithOutOfBoundsException() throws Exception {
+        list.get(1);
+    }
 }

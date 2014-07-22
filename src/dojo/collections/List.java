@@ -36,6 +36,8 @@ public class List {
     }
 
     public Object get(int index) {
+        throwExceptionIfBeyondLength(index);
+
         Element current = tail;
         for (int i = 0; i < index || i < length; i++) {
             if (index == i) {
@@ -63,9 +65,12 @@ public class List {
     }
 
     public void replace(Object object, int index) {
+        throwExceptionIfBeyondLength(index);
+
         int i = 0;
         Element current = tail;
         do {
+
             if (i == index) {
                 current.replaceElement(object);
                 break;
