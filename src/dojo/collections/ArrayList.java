@@ -13,9 +13,8 @@ public class ArrayList {
     }
 
     public Object get(int index) {
-        if (index > length - 1) {
-            throw new IndexOutOfBoundsException("Array only has a length of " + length);
-        }
+        throwIndexOutOfBoundsExceptionIfBeyondLength(index);
+
         return elements[index];
     }
 
@@ -38,5 +37,17 @@ public class ArrayList {
         }
         elements[index] = element;
         length++;
+    }
+
+    public void replace(Object element, int index) {
+        throwIndexOutOfBoundsExceptionIfBeyondLength(index);
+
+        elements[index] = element;
+    }
+
+    private void throwIndexOutOfBoundsExceptionIfBeyondLength(int index) {
+        if (index > length - 1) {
+            throw new IndexOutOfBoundsException("Array only has a length of " + length);
+        }
     }
 }

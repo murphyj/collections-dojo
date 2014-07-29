@@ -79,4 +79,20 @@ public class ArrayListTest {
 
         assertThat(list.length(), is(equalTo((DEFAULT_SIZE * 2) + 1)));
     }
+
+    @Test
+    public void replaceElement() throws Exception {
+        list.add("2nd");
+        list.add("last");
+
+        Object replacement = "replacement";
+        list.replace(replacement, 1);
+
+        assertThat(list.get(1), is(equalTo(replacement)));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void replaceElementBeyondLengthThrowsOutOfBoundsException() throws Exception {
+        list.replace("replace", 2);
+    }
 }
