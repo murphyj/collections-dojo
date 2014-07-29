@@ -8,14 +8,14 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class ListTest {
+public class LinkedListTest {
 
-    private List list;
+    private LinkedList list;
     private Object first;
 
     @Before
     public void setup() {
-        list = new List();
+        list = new LinkedList();
         first = "1st";
         list.add(first);
     }

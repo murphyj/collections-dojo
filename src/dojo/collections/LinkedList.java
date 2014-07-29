@@ -1,6 +1,6 @@
 package dojo.collections;
 
-public class List {
+public class LinkedList {
     private int length = 0;
     private Element head;
     private Element tail;
