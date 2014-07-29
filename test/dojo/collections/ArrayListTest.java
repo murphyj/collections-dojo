@@ -10,13 +10,15 @@ import static org.junit.Assert.assertThat;
 
 public class ArrayListTest {
 
+    private static final int DEFAULT_SIZE = 10;
+
     private ArrayList list;
     private Object first;
 
     @Before
     public void setup() {
         list = new ArrayList();
-        first = new Object();
+        first = "1st";
         list.add(first);
     }
 
@@ -29,5 +31,52 @@ public class ArrayListTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void getElementBeyondSizeOfListFailsWithOutOfBoundsException() throws Exception {
         list.get(1);
+    }
+
+    @Test
+    public void addingSecondElementToList() throws Exception {
+        Object second = "2nd";
+
+        list.add(second);
+
+        assertThat(list.get(1), is(equalTo(second)));
+        assertThat(list.length(), is(equalTo(2)));
+    }
+
+    @Test
+    public void insertingElement() throws Exception {
+        Object second = "2nd";
+        Object last = "last";
+        Object inserted = "insert";
+
+        list.add(second);
+        list.add(last);
+        list.insert(inserted, 1);
+
+        assertThat(list.get(1), is(equalTo(inserted)));
+        assertThat(list.get(2), is(equalTo(second)));
+        assertThat(list.get(3), is(equalTo(last)));
+    }
+
+    @Test
+    public void addElementResizesArray() throws Exception {
+        ArrayList list = new ArrayList();
+
+        for (int elementNo = 0; elementNo < DEFAULT_SIZE + 1; elementNo++) {
+            list.add(elementNo);
+        }
+
+        assertThat(list.length(), is(equalTo(DEFAULT_SIZE + 1)));
+    }
+
+    @Test
+    public void addingMoreThanTwentyElementsResizesArrayAgain() throws Exception {
+        ArrayList list = new ArrayList();
+
+        for (int elementNo = 0; elementNo < (DEFAULT_SIZE * 2) + 1; elementNo++) {
+            list.add(elementNo);
+        }
+
+        assertThat(list.length(), is(equalTo((DEFAULT_SIZE * 2) + 1)));
     }
 }
